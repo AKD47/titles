@@ -15,10 +15,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="clearfix btn-group col-md-2 offset-md-5">
+                <p class="card-text">Current page: <span class='font-weight-bold'>{{this.page}}</span></p>
+                <p class="card-text">Posts on current page: <span class='font-weight-bold'>{{displayedPosts.length}}</span></p>
+                <div class="clearfix btn-group d-flex flex-wrap justify-content-center">
                     <el-button type="primary" v-if="page != 1" @click="page--" icon="el-icon-d-arrow-left"
                                circle></el-button>
-                    <el-button type="primary" v-for="pageNumber in pages.slice(page-1, page+5)" @click="page = pageNumber"
+                    <el-button type="primary" v-for="pageNumber in pages" @click="page = pageNumber"
                                circle>{{pageNumber}}</el-button>
                     <el-button type="primary" @click="page++" v-if="page < pages.length" icon="el-icon-d-arrow-right" circle></el-button>
                 </div>
@@ -54,7 +56,7 @@
                 let data = [];
                 this.$http.get().then((response) => {
                     data = response.data;
-                    // console.log(data);
+                    console.log(data);
                     this.posts = data;
                     this.loading = false;
                 }).catch((error) => {
@@ -73,7 +75,7 @@
                 let from = (page * perPage) - perPage;
                 let to = (page * perPage);
                 return posts.slice(from, to);
-            }
+            },
         },
         watch: {
             posts () {
