@@ -1,4 +1,4 @@
-# auth
+# titles
 
 ## Project setup
 ```
