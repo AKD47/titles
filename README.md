@@ -1,4 +1,4 @@
-# titles
+# Posts
 
 ## Project setup
 ```
